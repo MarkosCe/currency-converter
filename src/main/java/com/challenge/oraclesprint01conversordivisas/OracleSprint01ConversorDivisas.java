@@ -4,6 +4,7 @@
 
 package com.challenge.oraclesprint01conversordivisas;
 
+import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Pesos;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -29,6 +30,9 @@ public class OracleSprint01ConversorDivisas extends JFrame{
     private JPanel conversorTemp;
     private JButton backTemp;
     private JPanel panelN;
+    private JButton buttonOkMoneda;
+    private JLabel resultado;
+    private JButton buttonOkTemp;
     private JPanel panelS;
     private JLabel signo;
     private JLabel signo2;
@@ -37,7 +41,7 @@ public class OracleSprint01ConversorDivisas extends JFrame{
     private JComboBox<String> options;
     private JComboBox<String> divisas;
     private JComboBox<String> divisas2;
-    private String[] opciones = {"Opción 1", "Opción 2", "Opción 3", "Opción 4"};
+    private String[] opciones = {"De pesos a dolares", "De pesos a euros", "De dolar a pesos", "De euros a pesos"};
     private String[] menuOptions = {"---", "Conversor de Divisas", "Conversor de Temperatura"};
     
     public OracleSprint01ConversorDivisas(){
@@ -64,8 +68,9 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         //Conversor moneda
         conversorMoneda = new JPanel();
         conversorMoneda.setLayout(new BoxLayout(conversorMoneda, BoxLayout.Y_AXIS));
-        conversorMoneda.add(new JLabel("Conversor de moneda"));
+        //conversorMoneda.add(new JLabel("Conversor de moneda"));
         
+        conversorMoneda.add(new JLabel("Ingresa la cantidad de dinero que deseas convertir"));
         panelN = new JPanel();
         //panelN.setPreferredSize(new Dimension(400, 50));
         conversorMoneda.add(panelN);
@@ -81,23 +86,11 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         divisas = new JComboBox<>(opciones);
         //divisas.setPreferredSize(new Dimension(100, 50));
         panelN.add(divisas);
-        
-        panelS = new JPanel();
-        //panelS.setPreferredSize(new Dimension(400, 50));
-        conversorMoneda.add(panelS);
-        signo2 = new JLabel("$");
-        signo2.setFont(new Font("Arial", Font.PLAIN, 24));
-        panelS.add(signo2);
-        tFieldDivisa2 = new JTextField(10);
-        tFieldDivisa2.setFont(new Font("Arial", Font.PLAIN, 24));
-        tFieldDivisa2.setHorizontalAlignment(JTextField.LEFT);
-        tFieldDivisa2.setEditable(true);
-        //tFieldDivisa2.setPreferredSize(new Dimension(300, 50));
-        panelS.add(tFieldDivisa2);
-        
-        divisas2 = new JComboBox<>(opciones);
-        //divisas2.setPreferredSize(new Dimension(100, 50));
-        panelS.add(divisas2);
+        buttonOkMoneda = new JButton("Convertir");
+        conversorMoneda.add(buttonOkMoneda);
+        resultado = new JLabel();
+        resultado.setFont(new Font("Arial", Font.PLAIN, 24));
+        conversorMoneda.add(resultado);
         
         backMoneda = new JButton("Regresar");
         conversorMoneda.add(backMoneda);
@@ -129,6 +122,16 @@ public class OracleSprint01ConversorDivisas extends JFrame{
             }
         });
         
+        buttonOkMoneda.addActionListener((e) -> {
+            Pesos pesos = new Pesos();
+            String selected = divisas.getSelectedItem().toString();
+            switch (selected) {
+                case "De pesos a dolares" -> showResult(pesos.pesosADolares(Double.parseDouble(tFieldDivisa.getText())));
+                case "De pesos a euros" -> showResult(pesos.pesosAEuros(Double.parseDouble(tFieldDivisa.getText())));
+                default -> showResult(0);
+            }
+        });
+        
         backMoneda.addActionListener((e) -> {
             CardLayout cardLayout = (CardLayout) contenedor.getLayout();
             cardLayout.show(contenedor, "homeMenu");
@@ -138,6 +141,10 @@ public class OracleSprint01ConversorDivisas extends JFrame{
             CardLayout cardLayout = (CardLayout) contenedor.getLayout();
             cardLayout.show(contenedor, "homeMenu");
         });
+    }
+    
+    public void showResult(double result){
+        resultado.setText("Coversion: " + result);
     }
     
     public static void main(String[] args) {
