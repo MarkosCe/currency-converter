@@ -17,4 +17,16 @@ public class Moneda {
     public void eurosAPesos(double cantidad){
         
     }
+    
+    public void librasAPesos(double cantidad){
+        
+    }
+    
+    public void yenAPesos(double cantidad){
+        
+    }
+    
+    public void wonCoreanoAPesos(double cantidad){
+        
+    }
 }

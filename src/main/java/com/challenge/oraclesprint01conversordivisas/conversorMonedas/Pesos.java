@@ -17,4 +17,18 @@ public class Pesos {
     public double pesosAEuros(double cantidad){
         return cantidad * 16;
     }
+    
+    public double pesosALibras(double cantidad){
+        return cantidad * 16;
+    }
+    
+    public double pesosAYen(double cantidad){
+        return cantidad * 16;
+    }
+    
+    public double pesosAWonCoreano(double cantidad){
+        return cantidad * 16;
+    }
+    
+    
 }

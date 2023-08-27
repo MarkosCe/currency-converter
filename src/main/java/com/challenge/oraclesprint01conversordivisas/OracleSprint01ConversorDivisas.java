@@ -8,6 +8,8 @@ import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Pesos;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -119,6 +121,26 @@ public class OracleSprint01ConversorDivisas extends JFrame{
             }else {
                 CardLayout cardLayout = (CardLayout) contenedor.getLayout();
                 cardLayout.show(contenedor, "ventanaTemp");
+            }
+        });
+        
+        tFieldDivisa.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (!Character.isDigit(caracter) &&
+                        caracter != KeyEvent.VK_BACK_SPACE && 
+                        caracter != KeyEvent.VK_DELETE) {
+                    e.consume(); 
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {               
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
         
