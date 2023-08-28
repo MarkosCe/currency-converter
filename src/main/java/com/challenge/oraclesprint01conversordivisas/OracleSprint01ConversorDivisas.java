@@ -7,6 +7,7 @@ package com.challenge.oraclesprint01conversordivisas;
 import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Moneda;
 import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Pesos;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -33,6 +34,7 @@ public class OracleSprint01ConversorDivisas extends JFrame{
     private JPanel conversorTemp;
     private JButton backTemp;
     private JPanel panelN;
+    private JLabel labelErrorCurrency;
     private JButton buttonOkMoneda;
     private JLabel resultado;
     private JButton buttonOkTemp;
@@ -54,7 +56,8 @@ public class OracleSprint01ConversorDivisas extends JFrame{
     
     public OracleSprint01ConversorDivisas(){
         setTitle("Conversor ");
-        setSize(400, 300);
+        setSize(600, 300);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
         
@@ -94,6 +97,10 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         divisas = new JComboBox<>(opciones);
         //divisas.setPreferredSize(new Dimension(100, 50));
         panelN.add(divisas);
+        labelErrorCurrency = new JLabel();
+        labelErrorCurrency.setFont(new Font("Arial", Font.PLAIN, 12));
+        labelErrorCurrency.setForeground(Color.red);
+        conversorMoneda.add(labelErrorCurrency);
         buttonOkMoneda = new JButton("Convertir");
         conversorMoneda.add(buttonOkMoneda);
         resultado = new JLabel();
@@ -151,9 +158,14 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         });
         
         buttonOkMoneda.addActionListener((e) -> {
+            if (tFieldDivisa.getText().isEmpty()) {
+                labelErrorCurrency.setText("Ingresa una cantidad");
+                return;
+            }
             Pesos pesos = new Pesos();
             Moneda moneda = new Moneda();
             double amount = Double.parseDouble(tFieldDivisa.getText());
+            labelErrorCurrency.setText("");
             String selected = divisas.getSelectedItem().toString();
             switch (selected) {
                 case "De Pesos a Dolar" -> 
