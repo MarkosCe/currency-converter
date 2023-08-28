@@ -10,23 +10,23 @@ package com.challenge.oraclesprint01conversordivisas.conversorMonedas;
  */
 public class Moneda {
     
-    public void dolaresAPesos(double cantidad){
-        
+    public double dolarAPesos(double cantidad){
+        return cantidad * 16.73;
     }
     
-    public void eurosAPesos(double cantidad){
-        
+    public double euroAPesos(double cantidad){
+        return cantidad * 18.07;
     }
     
-    public void librasAPesos(double cantidad){
-        
+    public double librasAPesos(double cantidad){
+        return cantidad * 21.07;
     }
     
-    public void yenAPesos(double cantidad){
-        
+    public double yenAPesos(double cantidad){
+        return cantidad * 0.11;
     }
     
-    public void wonCoreanoAPesos(double cantidad){
-        
+    public double wonCoreanoAPesos(double cantidad){
+        return cantidad * 0.013;
     }
 }

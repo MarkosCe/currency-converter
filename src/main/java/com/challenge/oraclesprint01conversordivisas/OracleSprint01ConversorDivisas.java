@@ -4,6 +4,7 @@
 
 package com.challenge.oraclesprint01conversordivisas;
 
+import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Moneda;
 import com.challenge.oraclesprint01conversordivisas.conversorMonedas.Pesos;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
@@ -43,7 +44,12 @@ public class OracleSprint01ConversorDivisas extends JFrame{
     private JComboBox<String> options;
     private JComboBox<String> divisas;
     private JComboBox<String> divisas2;
-    private String[] opciones = {"De pesos a dolares", "De pesos a euros", "De dolar a pesos", "De euros a pesos"};
+    private String[] opciones = {"De Pesos a Dolar",
+        "De Pesos a Euro", "De Pesos a Libras",
+        "De Pesos a Yen", "De Pesos a Won Coreano",
+        "De Dolar a Pesos", "De Euro a Pesos",
+        "De Libras a Pesos", "De Yen a Pesos",
+        "De Won Coreano a Pesos"};
     private String[] menuOptions = {"---", "Conversor de Divisas", "Conversor de Temperatura"};
     
     public OracleSprint01ConversorDivisas(){
@@ -118,7 +124,7 @@ public class OracleSprint01ConversorDivisas extends JFrame{
             if(selected.equals("Conversor de Divisas")){
                 CardLayout cardLayout = (CardLayout) contenedor.getLayout();
                 cardLayout.show(contenedor, "ventanaMoneda");
-            }else {
+            } else if(selected.equals("Conversor de Temperatura")) {
                 CardLayout cardLayout = (CardLayout) contenedor.getLayout();
                 cardLayout.show(contenedor, "ventanaTemp");
             }
@@ -146,11 +152,31 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         
         buttonOkMoneda.addActionListener((e) -> {
             Pesos pesos = new Pesos();
+            Moneda moneda = new Moneda();
+            double amount = Double.parseDouble(tFieldDivisa.getText());
             String selected = divisas.getSelectedItem().toString();
             switch (selected) {
-                case "De pesos a dolares" -> showResult(pesos.pesosADolares(Double.parseDouble(tFieldDivisa.getText())));
-                case "De pesos a euros" -> showResult(pesos.pesosAEuros(Double.parseDouble(tFieldDivisa.getText())));
-                default -> showResult(0);
+                case "De Pesos a Dolar" -> 
+                    showResult(pesos.pesosADolar(amount), "Dolares");
+                case "De Pesos a Euro" -> 
+                    showResult(pesos.pesosAEuro(amount), "Euros");
+                case "De Pesos a Libras" -> 
+                    showResult(pesos.pesosALibras(amount), "Libras");
+                case "De Pesos a Yen" -> 
+                    showResult(pesos.pesosAYen(amount), "Yenes");
+                case "De Pesos a Won Coreano" -> 
+                    showResult(pesos.pesosAWonCoreano(amount), "Wones");
+                case "De Dolar a Pesos" -> 
+                    showResult(moneda.dolarAPesos(amount), "Pesos");
+                case "De Euro a Pesos" -> 
+                    showResult(moneda.euroAPesos(amount), "Pesos");
+                case "De Libras a Pesos" -> 
+                    showResult(moneda.librasAPesos(amount), "Pesos");
+                case "De Yen a Pesos" -> 
+                    showResult(moneda.yenAPesos(amount), "Pesos");
+                case "De Won Coreano a Pesos" -> 
+                    showResult(moneda.wonCoreanoAPesos(amount), "Pesos");
+                default -> showResult(0,"");
             }
         });
         
@@ -165,8 +191,8 @@ public class OracleSprint01ConversorDivisas extends JFrame{
         });
     }
     
-    public void showResult(double result){
-        resultado.setText("Coversion: " + result);
+    public void showResult(double result, String currency){
+        resultado.setText("" + result + " " + currency);
     }
     
     public static void main(String[] args) {

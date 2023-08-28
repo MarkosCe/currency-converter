@@ -10,25 +10,24 @@ package com.challenge.oraclesprint01conversordivisas.conversorMonedas;
  */
 public class Pesos {
     
-    public double pesosADolares(double cantidad){
-        return cantidad * 15;
+    public double pesosADolar(double cantidad){
+        return cantidad * 0.060;
     }
     
-    public double pesosAEuros(double cantidad){
-        return cantidad * 16;
+    public double pesosAEuro(double cantidad){
+        return cantidad * 0.055;
     }
     
     public double pesosALibras(double cantidad){
-        return cantidad * 16;
+        return cantidad * 0.047;
     }
     
     public double pesosAYen(double cantidad){
-        return cantidad * 16;
+        return cantidad * 8.76;
     }
     
     public double pesosAWonCoreano(double cantidad){
-        return cantidad * 16;
+        return cantidad * 78.97;
     }
-    
     
 }
