@@ -10,23 +10,38 @@ package com.challenge.oraclesprint01conversordivisas.conversorMonedas;
  */
 public class Moneda {
     
-    public double dolarAPesos(double cantidad){
+    public double dolarAPesos(double cantidad) throws CurrencyConverterException{
+        if (cantidad <= 0) {
+            throw new CurrencyConverterException("La cantidad debe ser mayor a cero");
+        }
         return cantidad * 16.73;
     }
     
-    public double euroAPesos(double cantidad){
+    public double euroAPesos(double cantidad) throws CurrencyConverterException{
+        if (cantidad <= 0) {
+            throw new CurrencyConverterException("La cantidad debe ser mayor a cero");
+        }
         return cantidad * 18.07;
     }
     
-    public double librasAPesos(double cantidad){
+    public double librasAPesos(double cantidad) throws CurrencyConverterException{
+        if (cantidad <= 0) {
+            throw new CurrencyConverterException("La cantidad debe ser mayor a cero");
+        }
         return cantidad * 21.07;
     }
     
-    public double yenAPesos(double cantidad){
+    public double yenAPesos(double cantidad) throws CurrencyConverterException{
+        if (cantidad <= 0) {
+            throw new CurrencyConverterException("La cantidad debe ser mayor a cero");
+        }
         return cantidad * 0.11;
     }
     
-    public double wonCoreanoAPesos(double cantidad){
+    public double wonCoreanoAPesos(double cantidad) throws CurrencyConverterException{
+        if (cantidad <= 0) {
+            throw new CurrencyConverterException("La cantidad debe ser mayor a cero");
+        }
         return cantidad * 0.013;
     }
 }
