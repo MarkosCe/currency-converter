@@ -18,12 +18,6 @@ public class Pesos{
         this.amount = amount;
     }
     
-//    public double pesosADolar(double cantidad) throws CurrencyConverterException{
-//        if(cantidad <= 0)
-//            throw new CurrencyConverterException("Cantidad debe ser mayor a 0");
-//        return cantidad * 0.060;
-//    }
-    
     public double pesosADolar() {
         return amount * 0.060;
     }
